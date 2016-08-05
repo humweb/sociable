@@ -17,6 +17,111 @@ Via Composer
 $ composer require humweb/sociable
 ```
 
+**Add ServiceProvider**
+
+In the `providers` array add the service providers for this package.
+ ```php
+ Humweb\Sociable\ServiceProvider::class
+ ```
+
+**Publish configuration in Laravel 5**
+```bash  
+$ php artisan vendor:publish --provider="Humweb\Sociable\ServiceProvider"
+```
+
+
+**Add `Sociable` trait to user model**
+```php
+class User extends Authenticatable
+{
+    use Sociable;
+}
+```
+
+---
+
+## Getting started
+
+First step is hooking into a auth controller.
+Below you will find a example controller that demonstrates:
+* OAuth login
+* Linking third-party service to a user account, and;
+* Auto-link third-party account after normal login
+
+##### Example AuthController
+```php
+<?php
+
+class AuthController extends Controller
+{
+    /**
+     * Login
+     */
+    public function getLogin(Request $request)
+    {
+
+        // Remove social data from session upon request
+        if ($request->exists('forget_social')) {
+            $request->session()->forget('social_link');
+        }
+
+        return view('login');
+    }
+
+
+    public function postLogin(Request $request)
+    {
+
+        // Gather credentials
+        $credentials = [
+            'username' => $request->get('username'),
+            'password' => $request->get('password'),
+        ];
+
+        if ($user = \Auth::attempt($credentials, $remember)) {
+
+            // Check for social data in session
+            if ($request->session()->has('social_link')) {
+
+                // Grab data from session
+                $social = $request->session()->get('social_link');
+                $user->attachProvider($social['provider'], $social);
+
+                // Remove link data
+                $request->session()->forget('social_link');
+
+                return redirect()
+                    ->intended('/')
+                    ->with('success', 'Account connected to "'.$social['provider'].'" successfully.');
+            }
+
+            return redirect()->intended('/');
+        }
+
+        // Default error message
+        return back()
+            ->withInput()
+            ->withErrors('Invalid login or password.');
+    }
+
+}
+```
+
+
+##### Example message for your login page to remove session info
+
+ This can help if the user did not want to auto link the accounts after login.
+```
+@if (session()->has('social_link'))
+    <div class="alert alert-info">
+        Login to link your "{{ session('social_link.provider') }}" and "<Your Site>" accounts. <br>
+        If this is not what you want <a href="/login?forget_social">click here</a> to refresh.
+    </div>
+@endif
+```
+
+---
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
@@ -39,7 +144,7 @@ If you discover any security related issues, please email :author_email instead 
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/humweb/social.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/humweb/sociable.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/humweb/sociable/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/humweb/sociable.svg?style=flat-square
