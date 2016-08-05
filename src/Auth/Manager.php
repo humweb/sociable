@@ -2,6 +2,7 @@
 
 namespace Humweb\Sociable\Auth;
 
+use Illuminate\Container\Container;
 use Illuminate\Support\Manager as BaseManager;
 
 /**
@@ -11,6 +12,18 @@ use Illuminate\Support\Manager as BaseManager;
  */
 class Manager extends BaseManager
 {
+
+    /**
+     * Create a new manager instance.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    public function __construct($app = null)
+    {
+        $this->app = $app ?: Container::getInstance();
+    }
+
 
     /**
      * Create Laravel driver

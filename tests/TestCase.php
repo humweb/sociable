@@ -38,6 +38,13 @@ abstract class TestCase extends BaseTestCase
     {
         // Setup default database to use sqlite :memory:
         $app['config']->set('social.social.auth_provider', 'laravel');
+
+        $app['config']->set('services.github', [
+            'client_id'     => 'id-123',
+            'client_secret' => 'secret-123',
+            'redirect'      => 'http://localhost/social/handle/github',
+        ]);
+
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
