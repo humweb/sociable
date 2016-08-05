@@ -9,6 +9,12 @@
   ],
   "license": "MIT",
   "type": "project",
+  "authors": [
+    {
+      "name": "Ryan Shonfner",
+      "email": "ryun@humboldtweb.com"
+    }
+  ],
   "autoload": {
     "classmap": [
       "database"
