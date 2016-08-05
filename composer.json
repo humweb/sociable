@@ -1,0 +1,33 @@
+{
+  "name": "humweb/sociable",
+  "description": "Socialite authentication and persistence layer implementation.",
+  "keywords": [
+    "social",
+    "auth",
+    "socialite",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "autoload": {
+    "classmap": [
+      "database"
+    ],
+    "psr-4": {
+      "Humweb\\Sociable\\": "src/"
+    }
+  },
+  "require": {
+    "laravel/socialite": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "orchestra/testbench": "~3.0",
+    "mockery/mockery": "~0.9.4"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Humweb\\Sociable\\Tests\\": "tests/"
+    }
+  }
+}
