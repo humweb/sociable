@@ -13,6 +13,9 @@ abstract class AbstractDriver
     protected $app;
 
 
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
     public function __construct($app)
     {
         $this->app = $app;

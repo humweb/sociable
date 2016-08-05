@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $output->title('Starting Database Seed');
 
         //---------------- Create user database -------------
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();

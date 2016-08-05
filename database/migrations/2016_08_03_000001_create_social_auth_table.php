@@ -12,7 +12,7 @@ class CreateSocialAuthTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_connections', function (Blueprint $table) {
+        Schema::create('social_connections', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('social_id', 127)->index();

@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Humweb\Sociable\Tests\Stubs\User::class, function (Faker\Generator $faker) {
+$factory->define(Humweb\Sociable\Tests\Stubs\User::class, function(Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'email'          => $faker->safeEmail,

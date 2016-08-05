@@ -7,7 +7,6 @@ use Humweb\Sociable\Models\SocialConnection;
 use Illuminate\Routing\Controller;
 use Illuminate\Session\SessionManager;
 use Laravel\Socialite\Facades\Socialite;
-use LGL\Core\Auth\Laravel\Facades\Sentinel;
 
 /**
  * AuthController

@@ -67,7 +67,7 @@ trait Sociable
     public function detachProviderByName($provider)
     {
         $count = 0;
-        $this->social()->ofProvider($provider)->get()->each(function (SocialConnection $social) use ($count) {
+        $this->social()->ofProvider($provider)->get()->each(function(SocialConnection $social) use ($count) {
             $count = $count + $social->delete();
         });
 
@@ -85,7 +85,7 @@ trait Sociable
     public function detachProviderById($provider)
     {
         $count = 0;
-        $this->social()->ofProviderId($provider)->get()->each(function (SocialConnection $social) use ($count) {
+        $this->social()->ofProviderId($provider)->get()->each(function(SocialConnection $social) use ($count) {
             $count = $count + $social->delete();
         });
 

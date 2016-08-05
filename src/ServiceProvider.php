@@ -20,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('social.auth', function ($app) {
+        $this->app->singleton('social.auth', function($app) {
             return new Manager($app);
         });
     }
