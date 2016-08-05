@@ -43,11 +43,12 @@ class User extends Authenticatable
 ## Getting started
 
 First step is hooking into a auth controller.
-Below you will find a example controller that demonstrates:
-* OAuth login
-* Linking third-party service to a user account, and;
-* Auto-link third-party account after normal login
 
+* OAuth login `*`
+* Linking third-party service to a user account `*`
+* Auto-link third-party account after normal login 
+
+**Note:** item marked with `*` consult `Humweb\Sociable\Http\Controllers\AuthController.php`
 ##### Example AuthController
 ```php
 <?php
