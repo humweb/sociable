@@ -1,9 +1,11 @@
 # Sociable
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+
 [![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
 
 Socialite authentication and persistence layer implementation.
 
@@ -37,7 +39,7 @@ If you discover any security related issues, please email :author_email instead 
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/humweb/social.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/humweb/sociable.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/humweb/sociable/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/humweb/sociable.svg?style=flat-square
