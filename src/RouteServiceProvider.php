@@ -40,7 +40,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function ($router) {
+        $router->group(['namespace' => $this->namespace], function($router) {
             require __DIR__.'/Http/routes.php';
         });
     }
