@@ -29,6 +29,31 @@ In the `providers` array add the service providers for this package.
 $ php artisan vendor:publish --provider="Humweb\Sociable\ServiceProvider"
 ```
 
+**Run database migration**
+```bash  
+$ php artisan migrate"
+```
+
+**Configure user auth driver and provider configs**
+
+```php
+<?php
+
+// config/sociable.php
+
+return [
+
+    // Builtin options: laravel, sentinel
+    'auth_provider' => 'laravel',
+
+    // Optional provider list, mainly used to list login buttons.
+    'providers' => [
+        'google',
+        'github',
+        'twitter'
+    ]
+];
+```
 
 **Add `Sociable` trait to user model**
 ```php
