@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class SociableDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
