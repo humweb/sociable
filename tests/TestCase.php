@@ -37,7 +37,7 @@ abstract class TestCase extends BaseTestCase
     protected function getEnvironmentSetUp($app)
     {
         // Setup default database to use sqlite :memory:
-        $app['config']->set('social.social.auth_provider', 'laravel');
+        $app['config']->set('sociable.social.auth_provider', 'laravel');
 
         $app['config']->set('services.github', [
             'client_id'     => 'id-123',
@@ -72,7 +72,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->artisan('db:seed', [
             '--database' => 'testing',
-            '--class'    => 'DatabaseSeeder'
+            '--class'    => 'SociableDatabaseSeeder'
         ]);
 
         $this->beforeApplicationDestroyed(function () {

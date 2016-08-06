@@ -1,5 +1,13 @@
 <?php
 
 return [
-    'social.auth_provider' => 'laravel', // laravel or sentinel
+
+    // Builtin options: laravel, sentinel
+    'auth_provider' => 'laravel',
+
+    'providers' => [
+        'google',
+        'github',
+        'twitter'
+    ]
 ];

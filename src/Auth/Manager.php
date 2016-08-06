@@ -52,6 +52,6 @@ class Manager extends BaseManager
      */
     public function getDefaultDriver()
     {
-        return $this->app['config']->get('social.auth_provider', 'laravel');
+        return $this->app['config']->get('sociable.auth_provider', 'laravel');
     }
 }
