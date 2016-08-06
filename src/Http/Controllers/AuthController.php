@@ -47,7 +47,7 @@ class AuthController extends Controller
         } else {
 
             // Store to connect accounts after login
-            $session->put('social_link', ['id' => $user->id, 'provider' => $provider]);
+            $session->put('social_link', ['user' => $user, 'provider' => $provider]);
 
             // No user found - redirect to login
             return redirect('login')->with('error', 'No matching records found, please login to link accounts.');
