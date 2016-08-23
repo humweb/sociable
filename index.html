@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Sociable by humweb</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Sociable</h1>
+        <p>Socialite authentication and persistence layer implementation.</p>
+
+        <p class="view"><a href="https://github.com/humweb/sociable">View the Project on GitHub <small>humweb/sociable</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/humweb/sociable/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/humweb/sociable/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/humweb/sociable">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="sociable" class="anchor" href="#sociable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sociable</h1>
+
+<p><a href="https://packagist.org/packages/humweb/sociable"><img src="https://img.shields.io/packagist/v/humweb/sociable.svg?style=flat-square" alt="Latest Version on Packagist"></a>
+<a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a>
+<a href="https://travis-ci.org/humweb/sociable"><img src="https://img.shields.io/travis/humweb/sociable/master.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/humweb/sociable/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/humweb/sociable.svg?style=flat-square" alt="Coverage Status"></a>
+<a href="https://scrutinizer-ci.com/g/humweb/sociable"><img src="https://img.shields.io/scrutinizer/g/humweb/sociable.svg?style=flat-square" alt="Quality Score"></a>
+<a href="https://packagist.org/packages/humweb/sociable"><img src="https://img.shields.io/packagist/dt/humweb/sociable.svg?style=flat-square" alt="Total Downloads"></a></p>
+
+<p>Socialite authentication and persistence layer implementation.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Via Composer</p>
+
+<div class="highlight highlight-source-shell"><pre>$ composer require humweb/sociable</pre></div>
+
+<p><strong>Add ServiceProvider</strong></p>
+
+<p>In the <code>providers</code> array add the service providers for this package.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"> <span class="pl-c1">Humweb\Sociable\</span><span class="pl-c1">ServiceProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span></span></pre></div>
+
+<p><strong>Publish configuration in Laravel 5</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>$ php artisan vendor:publish --provider=<span class="pl-s"><span class="pl-pds">"</span>Humweb\Sociable\ServiceProvider<span class="pl-pds">"</span></span></pre></div>
+
+<p><strong>Run database migration</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>$ php artisan migrate<span class="pl-s"><span class="pl-pds">"</span></span></pre></div>
+
+<p><strong>Configure user auth driver and provider configs</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// config/sociable.php</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">return</span> [</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// Builtin options: laravel, sentinel</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>auth_provider<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>laravel<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// Optional provider list, mainly used to list login buttons.</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>providers<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> [</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>google<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>github<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>twitter<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">    ]</span>
+<span class="pl-s1">];</span></pre></div>
+
+<p><strong>Add <code>Sociable</code> trait to user model</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">User</span> <span class="pl-k">extends</span> <span class="pl-e">Authenticatable</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">use</span> <span class="pl-c1">Sociable</span>;</span>
+<span class="pl-s1">}</span></pre></div>
+
+<hr>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>See <code>Humweb\Sociable\Http\Controllers\AuthController.php</code> for:</p>
+
+<ul>
+<li>OAuth login</li>
+<li>Link third-party service to a user account</li>
+</ul>
+
+<h5>
+<a id="example-authcontroller-auto-link-third-party-account-after-normal-login" class="anchor" href="#example-authcontroller-auto-link-third-party-account-after-normal-login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example AuthController (Auto-link third-party account after normal login)</h5>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">AuthController</span> <span class="pl-k">extends</span> <span class="pl-e">Controller</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * Login</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">getLogin</span>(<span class="pl-c1">Request</span> <span class="pl-smi">$request</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-c">// Remove social data from session upon request</span></span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>exists(<span class="pl-s"><span class="pl-pds">'</span>forget_social<span class="pl-pds">'</span></span>)) {</span>
+<span class="pl-s1">            <span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>session()<span class="pl-k">-&gt;</span>forget(<span class="pl-s"><span class="pl-pds">'</span>social_link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">return</span> view(<span class="pl-s"><span class="pl-pds">'</span>login<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">postLogin</span>(<span class="pl-c1">Request</span> <span class="pl-smi">$request</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-c">// Gather credentials</span></span>
+<span class="pl-s1">        <span class="pl-smi">$credentials</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">        ];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-c1">\</span><span class="pl-c1">Auth</span><span class="pl-k">::</span>attempt(<span class="pl-smi">$credentials</span>, <span class="pl-smi">$remember</span>)) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            <span class="pl-c">// Check for social data in session</span></span>
+<span class="pl-s1">            <span class="pl-k">if</span> (<span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>session()<span class="pl-k">-&gt;</span>has(<span class="pl-s"><span class="pl-pds">'</span>social_link<span class="pl-pds">'</span></span>)) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-c">// Grab data from session</span></span>
+<span class="pl-s1">                <span class="pl-smi">$social</span> <span class="pl-k">=</span> <span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>session()<span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>social_link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">                <span class="pl-smi">$user</span><span class="pl-k">-&gt;</span>attachProvider(<span class="pl-smi">$social</span>[<span class="pl-s"><span class="pl-pds">'</span>provider<span class="pl-pds">'</span></span>], <span class="pl-smi">$social</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-c">// Remove link data</span></span>
+<span class="pl-s1">                <span class="pl-smi">$request</span><span class="pl-k">-&gt;</span>session()<span class="pl-k">-&gt;</span>forget(<span class="pl-s"><span class="pl-pds">'</span>social_link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-k">return</span> redirect()</span>
+<span class="pl-s1">                    <span class="pl-k">-&gt;</span>intended(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">                    <span class="pl-k">-&gt;</span>with(<span class="pl-s"><span class="pl-pds">'</span>success<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Account connected to "<span class="pl-pds">'</span></span><span class="pl-k">.</span><span class="pl-smi">$social</span>[<span class="pl-s"><span class="pl-pds">'</span>provider<span class="pl-pds">'</span></span>]<span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>" successfully.<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            <span class="pl-k">return</span> redirect()<span class="pl-k">-&gt;</span>intended(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-c">// Default error message</span></span>
+<span class="pl-s1">        <span class="pl-k">return</span> back()</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>withInput()</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>withErrors(<span class="pl-s"><span class="pl-pds">'</span>Invalid login or password.<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span></pre></div>
+
+<h5>
+<a id="example-message-for-your-login-page-to-remove-session-info" class="anchor" href="#example-message-for-your-login-page-to-remove-session-info" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example message for your login page to remove session info</h5>
+
+<p>This can help if the user did not want to auto link the accounts after login.</p>
+
+<pre><code>@if (session()-&gt;has('social_link'))
+    &lt;div class="alert alert-info"&gt;
+        Login to link your "{{ session('social_link.provider') }}" and "&lt;Your Site&gt;" accounts. &lt;br&gt;
+        If this is not what you want &lt;a href="/login?forget_social"&gt;click here&lt;/a&gt; to refresh.
+    &lt;/div&gt;
+@endif
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Change log</h2>
+
+<p>Please see <a href="CHANGELOG.md">CHANGELOG</a> for more information what has changed recently.</p>
+
+<h2>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ phpunit</pre></div>
+
+<h2>
+<a id="security" class="anchor" href="#security" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Security</h2>
+
+<p>If you discover any security related issues, please email :author_email instead of using the issue tracker.</p>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credits</h2>
+
+<ul>
+<li><a href="http://github.com/ryun">Ryan Shofner</a></li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License (MIT). Please see <a href="LICENSE.md">License File</a> for more information.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/humweb">humweb</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
