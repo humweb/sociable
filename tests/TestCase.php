@@ -7,7 +7,6 @@ use Humweb\Sociable\ServiceProvider;
 use Humweb\Sociable\Tests\Stubs\User;
 use Laravel\Socialite\SocialiteServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Orchestra\Database\ConsoleServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,7 +15,6 @@ abstract class TestCase extends BaseTestCase
         return [
             ServiceProvider::class,
             SocialiteServiceProvider::class,
-            // ConsoleServiceProvider::class,
         ];
     }
 
