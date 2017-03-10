@@ -16,9 +16,6 @@
     }
   ],
   "autoload": {
-    "classmap": [
-      "database"
-    ],
     "psr-4": {
       "Humweb\\Sociable\\": "src/"
     }
