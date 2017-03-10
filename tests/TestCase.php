@@ -67,7 +67,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->artisan('migrate', [
             '--database' => 'testing',
-            '--realpath' => realpath(__DIR__.'/../database/migrations'),
+            '--path' => realpath(__DIR__.'/../database/migrations'),
         ]);
 
         $this->artisan('db:seed', [
