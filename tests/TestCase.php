@@ -7,6 +7,7 @@ use Humweb\Sociable\ServiceProvider;
 use Humweb\Sociable\Tests\Stubs\User;
 use Laravel\Socialite\SocialiteServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Orchestra\Database\ConsoleServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -14,7 +15,8 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             ServiceProvider::class,
-            SocialiteServiceProvider::class
+            SocialiteServiceProvider::class,
+            // ConsoleServiceProvider::class,
         ];
     }
 
@@ -67,7 +69,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->artisan('migrate', [
             '--database' => 'testing',
-            '--path' => realpath(__DIR__.'/../database/migrations'),
+            '--path' => '../../../../database/migrations',
         ]);
 
         $this->artisan('db:seed', [
