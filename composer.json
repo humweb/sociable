@@ -22,7 +22,7 @@
     "classmap": [
       "database/seeds",
       "database/factories"
-    ],
+    ]
   },
   "require": {
     "laravel/socialite": "^2.0"
