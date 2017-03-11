@@ -36,6 +36,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
+
         // Setup default database to use sqlite :memory:
         $app['config']->set('sociable.social.auth_provider', 'laravel');
 
@@ -76,13 +77,11 @@ abstract class TestCase extends BaseTestCase
         ]);
 
         $this->beforeApplicationDestroyed(function () {
-            $this->artisan('migrate:rollback');
+            $this->artisan('migrate:rollback', [
+                '--database' => 'testing',
+                '--path' => '../../../../database/migrations',
+            ]);
         });
     }
-
-
-    public function getMigrationsPath()
-    {
-        return realpath(__DIR__.'/../database/migrations');
-    }
+    
 }
