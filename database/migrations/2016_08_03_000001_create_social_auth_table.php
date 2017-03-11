@@ -22,6 +22,7 @@ class CreateSocialAuthTable extends Migration
             $table->timestamps();
             $table->unique(['provider', 'user_id']);
         });
+
     }
 
 
@@ -32,6 +33,6 @@ class CreateSocialAuthTable extends Migration
      */
     public function down()
     {
-        Schema::drop('social_connections');
+        Schema::dropIfExists('social_connections');
     }
 }

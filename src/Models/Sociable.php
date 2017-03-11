@@ -98,7 +98,7 @@ trait Sociable
 
     public function listProviders()
     {
-        return $this->social()->lists('provider')->all();
+        return $this->social()->pluck('provider')->all();
     }
 
 

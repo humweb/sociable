@@ -26,11 +26,11 @@
   },
   "require": {
     "laravel/socialite": "2.*",
-    "laravel/framework": "5.1.*"
+    "laravel/framework": "5.4.*"
   },
   "require-dev": {
     "phpunit/phpunit": "4.*||5.*",
-    "orchestra/testbench": "3.*",
+    "orchestra/testbench": "~3.4",
     "mockery/mockery": "~0.9.4",
     "scrutinizer/ocular": "~1.3"
   },
