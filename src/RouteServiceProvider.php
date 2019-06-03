@@ -17,21 +17,6 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param  \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        //
-
-        parent::boot($router);
-    }
-
-
-    /**
      * Define the routes for the application.
      *
      * @param  \Illuminate\Routing\Router $router
